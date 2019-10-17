@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+<title>home page template</title>
+{% block base_head %}
+
+{% endblock %}
+
+{% block content %}
+
+
+  <form method="POST"> {% csrf_token %}
+              {{ form }}
+              <button type='submit' class='btn btn-default' style="background: grey">Submit</button>
+          </form>
+
+{% endblock %}
