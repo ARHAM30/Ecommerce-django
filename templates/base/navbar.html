@@ -2,8 +2,8 @@
 {% url 'contact' as contact_url %}
 {% url 'login' as login_url %}
 {% url 'product' as product_url %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark {% if request.path == home_url %}active{% endif %}">
+  <a class="navbar-brand" href="{{ home_url }}">Pets</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -14,7 +14,10 @@
         <a class="nav-link" href="{{ home_url }}">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item {% if request.path == product_url %}active{% endif %}">
-        <a class="nav-link" href='{% url "product:about"%}'>product<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href='{% url "search:query"%}'>search<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item {% if request.path == product_url %}active{% endif %}">
+        <a class="nav-link" href='{% url "product:productlist"%}'>product<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item {% if request.path == contact_url %}active{% endif %}">
         <a class="nav-link" href="{{ contact_url }}">contact<span class="sr-only">(current)</span></a>
@@ -24,9 +27,6 @@
         <a class="nav-link" href="{{ login_url }}">login<span class="sr-only">(current)</span></a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    {% include 'search/snippets/search-form.html' %}
   </div>
 </nav>

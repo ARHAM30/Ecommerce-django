@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Carts</h1>
+
+{% if cart.product.exists %}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>product name</th>
+      <th>product price</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for products in cart.product.all %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td><a href="{{ products.get_absolute_url }}">{{ products.title }}</a></td>
+      <td>{{ products.price }}</td>
+    </tr>
+  {% endfor %}
+    <tr>
+      <td colspan="2"></td>
+      <td><b>subtotal</b> {{ cart.subtotal }}</td>
+    </tr>
+    <tr>
+      <td colspan="2"></td>
+      <td><b>total</b>{{ cart.total }} </td>
+    </tr>
+  </tbody>
+</table>
+{% else %}
+<p class="lead">Cart Is Empty</p>
+{% endif %}
+
+{% endblock %}

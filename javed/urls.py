@@ -19,14 +19,20 @@ from django.conf.urls.static import static
 
 
 from django.contrib import admin
+from django.views.generic import TemplateView
 from django.urls import path, include
 from .views import home_page, about_page, contact_page, detail_page, login_page
+# from account.views import register
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_page, name="home"),
     path('about/', about_page, name="about"),
-    path('product/',include("product.urls",namespace="product")),
+    path('bootstrap/', TemplateView.as_view(template_name='bootstrap/example.html')),
+    path('product/', include("product.urls", namespace="product")),
+    path('cart/', include("carts.urls", namespace="cart")),
+    path('search/', include("search.urls", namespace="search")),
+    # path('register/',register,name='register' ),
     # path('product/', ProductListView.as_view(), name="about"),
     # path('product/''<int:pk>', ProductDetailView.as_view(), name="about"),
     # path('product/''<slug:slug>', ProductDetailSlugView.as_view(), name="about"),

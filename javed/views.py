@@ -72,7 +72,7 @@ def register_page(request):
 
 
 def home_page_old(request):
-    html_ = """
+    html = """
     <!doctype html>
     <html lang="en">
       <head>
